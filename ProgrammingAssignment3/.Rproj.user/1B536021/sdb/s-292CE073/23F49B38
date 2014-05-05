@@ -1,0 +1,17 @@
+{
+    "contents" : "as.name <- function(outcome){\n  # Capitalized lower case words\n  capitalized <- gsub(\"([a-zA-Z])([a-zA-Z]+)\",\"\\\\U\\\\1\\\\L\\\\2\",outcome, perl=TRUE)\n  # with spaces replaced by a single dot\n  dotted <- gsub(\"( )+\",\"\\\\.\", capitalized)\n  paste(\"Hospital.30.Day.Death..Mortality..Rates.from.\",dotted,sep=\"\") \n}\n\n## Returns the dataset\n## Performs validation, stopping if not valid\n##   state     is a value in the input\n##   outcome   occurs as a 30daypercentile column name  \nvalidated.input <- function(outcome, state=NA){\n  outcomes <- read.csv(\"outcome-of-care-measures.csv\", \n                       colClasses = \"character\")\n  if (!is.na(state)){      #only validate if state is explicitly given\n    if (!(state %in% outcomes$State)) {\n      stop(\"invalid state\") \n    }\n  }\n  if (!(as.name(outcome) %in% names(outcomes))){\n    stop(\"invalid outcome\")\n  }\n  outcomes\n}\n\n#Non generic narrowing function, use for debugging..\n# narrwos the dataset, and performs a numeric cast.\ndebug.narrow <- function(hospitals, outcome){\n  full.outcome <- as.name(outcome)\n  hospitals <- hospitals[ , c(\"State\",\"Hospital.Name\",full.outcome)]\n  outcome.col <- as.numeric(hospitals[ , full.outcome])\n  hospitals[ , full.outcome] <- outcome.col\n  hospitals  \n}\n\n\n## Returns an ordered, narrowed dataset\n## ordering by outcome, name\nordered <- function(hospitals,outcome){\n  full.outcome <- as.name(outcome)\n  hospitals <- hospitals[ , c(\"State\",\"Hospital.Name\",full.outcome)]\n  outcome.col <- as.numeric(hospitals[ , full.outcome])\n  hospitals[ , full.outcome] <- outcome.col\n  row.ordering <- order(hospitals[ , full.outcome], \n                        hospitals[ , \"Hospital.Name\"], \n                        na.last=NA)\n  ordered.hospitals <- hospitals[ row.ordering , ]  \n  ordered.hospitals\n}\n\n## Returns the best hospital for `outcome` within the `state`\nbest <- function(state,outcome){\n  all.hospitals <- validated.input(outcome,state)\n  state.hospitals <- subset(all.hospitals, all.hospitals$State == state)  #maybe use index notation\n  ordered.hospitals <- ordered(state.hospitals, outcome)\n  ordered.hospitals$Hospital.Name[1]\n}",
+    "created" : 1399240387738.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3482061534",
+    "id" : "23F49B38",
+    "lastKnownWriteTime" : 1399321527,
+    "path" : "~/dev/coursera/Data Science/R programming/ProgrammingAssignment3/Best.R",
+    "project_path" : "Best.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

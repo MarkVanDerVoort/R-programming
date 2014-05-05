@@ -1,0 +1,17 @@
+{
+    "contents" : "source(\"best.r\")\r\n\r\n## Returns a ranknumber for a qualitative rank {best,worst,1:n}\r\nrank.quantitative <- function(df,rank){\r\n  # get the rank now..\r\n  if (rank == \"best\"){\r\n    eff.rank <- 1\r\n  } else if (rank == \"worst\"){\r\n    eff.rank <- nrow(df)\r\n  } else {\r\n    eff.rank <- rank\r\n  }  \r\n  eff.rank\r\n}\r\n\r\n## Returns the hospital ranked `rank`, for give `state` and `outcome`\r\nrankhospital <- function(state, outcome, rank = \"best\") {\r\n  all.hospitals <- validated.input(outcome,state)\r\n  state.hospitals <- subset(all.hospitals, all.hospitals$State == state)\r\n  ordered.hospitals <- ordered(state.hospitals, outcome)\r\n  \r\n  eff.rank <- rank.quantitative(ordered.hospitals,rank)\r\n  ordered.hospitals$Hospital.Name[eff.rank]\r\n}\r\n\r\n## Returns a selector function\r\n## which when applied to a dataframe returns the hospital ranked `rank` for an `outcome`\r\nfn.rank <- function(rank,outcome){\r\n  #for rankall we probably need a function returning a function\r\n  #to be used in aggregate\r\n  a <- function(df){\r\n    eff.rank <- rank.quantitative(df,rank)\r\n    ordered(df,outcome)[eff.rank , ] \r\n  }\r\n  a\r\n}\r\n\r\nrankall <- function(outcome, num = \"best\") {\r\n  all.hospitals <- validated.input(outcome)\r\n  all.hospitals <- debug.narrow(all.hospitals, outcome)\r\n  split.hospitals <- split(all.hospitals, all.hospitals$State)\r\n  tmp2 <- sapply(split.hospitals, fn.rank(num,outcome))\r\n  tmpBy <- by(all.hospitals, all.hospitals$State, fn.rank(num,outcome))\r\n  df.out <- do.call(rbind,tmpBy)\r\n  df <- df.out[ , c(2,1)]\r\n  names(df) <- c(\"hospital\",\"state\")\r\n  df\r\n}  \r\n",
+    "created" : 1399254164415.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1843072737",
+    "id" : "B321A198",
+    "lastKnownWriteTime" : 1399323354,
+    "path" : "~/dev/coursera/Data Science/R programming/ProgrammingAssignment3/rankhospital.R",
+    "project_path" : "rankhospital.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

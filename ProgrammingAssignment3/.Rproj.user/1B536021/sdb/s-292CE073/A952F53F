@@ -1,0 +1,17 @@
+{
+    "contents" : "source('rankhospital.R')\n\nbest(\"SC\", \"heart attack\") == \"MUSC MEDICAL CENTER\"\nbest(\"NY\", \"pneumonia\")    == \"MAIMONIDES MEDICAL CENTER\"\n#is.na( best(\"NN\", \"pneumonia\") )\n\nrankhospital(\"NC\", \"heart attack\", \"worst\") == \"WAYNE MEMORIAL HOSPITAL\"\nrankhospital(\"WA\", \"heart attack\", 7)       == \"YAKIMA VALLEY MEMORIAL HOSPITAL\"\nis.na( rankhospital(\"WA\", \"pneumonia\", 1000) )\n#rankhospital(\"NY\", \"heart attak\", 7)\n\n# 8:10\nshould.equal <- function(a,b){\n  if (a==b){\n    TRUE\n  } else {\n    print(paste( a, \" =/= \",  b))\n    FALSE\n  }\n}\n\nequiv <- function(state,outcome,rank){\n  should.equal( rankhospital(state,outcome,rank) , rankall(outcome,rank)[state,\"hospital\"])\n}\n\nequiv(\"AK\",\"heart attack\", 4)\nequiv(\"NJ\",\"pneuononia\", worst)\nequiv(\"WV\",\"heart failure\", 10)\n",
+    "created" : 1399291183446.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3294058567",
+    "id" : "A952F53F",
+    "lastKnownWriteTime" : 1399323086,
+    "path" : "~/dev/coursera/Data Science/R programming/ProgrammingAssignment3/tests.R",
+    "project_path" : "tests.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

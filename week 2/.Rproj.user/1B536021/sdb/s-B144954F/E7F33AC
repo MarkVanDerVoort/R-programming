@@ -1,0 +1,17 @@
+{
+    "contents" : "pollutantmean <- function(directory = \"specdata\", pollutant, id = 1:332) {\r\n  ## 'directory' is a character vector of length 1 indicating\r\n  ## the location of the CSV files\r\n\r\n  ## 'pollutant' is a character vector of length 1 indicating\r\n  ## the name of the pollutant for which we will calculate the\r\n  ## mean; either \"sulfate\" or \"nitrate\".\r\n\r\n  ## 'id' is an integer vector indicating the monitor ID numbers\r\n  ## to be used\r\n  files <- sprintf(\"./%s/%03d.csv\",directory,id)\r\n  contents <- lapply(files,read.csv)\r\n  all <- do.call(\"rbind\",contents)  #deconstruct contents so that it fits ellipsis\r\n  ## Return the mean of the pollutant across all monitors list\r\n  ## in the 'id' vector (ignoring NA values)\r\n  mean(all[,pollutant], na.rm=TRUE)\r\n}\r\n\r\n",
+    "created" : 1397997775260.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1464468914",
+    "id" : "E7F33AC",
+    "lastKnownWriteTime" : 1398004778,
+    "path" : "~/dev/coursera/Data Science/R programming/week 2/pollutantmean.R",
+    "project_path" : "pollutantmean.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

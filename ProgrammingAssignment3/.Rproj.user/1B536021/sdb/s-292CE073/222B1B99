@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1399319086367.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "222B1B99",
+    "lastKnownWriteTime" : 0,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "tmpBy[[1]]",
+        "contentUrl" : "content?title=tmpBy%5B%5B1%5D%5D&file=d0fec0db327f4f2fbad64e6e6f625d24.htm",
+        "displayedObservations" : 1,
+        "displayedVariables" : 4,
+        "totalObservations" : 1,
+        "variables" : 3
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

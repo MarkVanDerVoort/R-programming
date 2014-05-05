@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1398005541624.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D7DDD328",
+    "lastKnownWriteTime" : 3472873584467116033,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "sel",
+        "contentUrl" : "content?title=sel&file=be4de43519d24f8c8e45a7c7040c67f4.htm",
+        "displayedObservations" : 1000,
+        "displayedVariables" : 4,
+        "totalObservations" : 23739,
+        "variables" : 4
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

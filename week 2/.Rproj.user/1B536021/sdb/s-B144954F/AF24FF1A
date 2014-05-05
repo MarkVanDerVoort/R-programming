@@ -1,0 +1,17 @@
+{
+    "contents" : "complete <- function(directory, id = 1:332) {\n  ## 'directory' is a character vector of length 1 indicating\n  ## the location of the CSV files\n  ## 'id' is an integer vector indicating the monitor ID numbers\n  ## to be used\n  \n  ## Return a data frame of the form:\n  ## id nobs\n  ## 1  117\n  ## 2  1041\n  ## ...\n  ## where 'id' is the monitor ID number and 'nobs' is the\n  ## number of complete cases\n  \n  files <- sprintf(\"./%s/%03d.csv\",directory,id)\n  contents <- lapply(files,read.csv)\n  all <- do.call(\"rbind\",contents)  #deconstruct contents so that it fits ellipsis\n  # now filter out the complete measurements\n  completes <- all[complete.cases(all[, c(\"sulfate\", \"nitrate\")]), ]\n  # and group them on ID\n  counts <- aggregate( sulfate ~ ID, completes, length)  #loses ordering\n  # reorder them\n  orderedcounts <- counts[match(id,counts$ID),]\n  names(orderedcounts) <- c(\"id\",\"nobs\")\n  orderedcounts\n}\n",
+    "created" : 1398031288748.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1626493160",
+    "id" : "AF24FF1A",
+    "lastKnownWriteTime" : 1398027424,
+    "path" : "~/dev/coursera/Data Science/R programming/week 2/complete.R",
+    "project_path" : "complete.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

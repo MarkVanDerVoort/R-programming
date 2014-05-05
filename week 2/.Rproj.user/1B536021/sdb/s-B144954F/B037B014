@@ -1,0 +1,22 @@
+{
+    "contents" : "",
+    "created" : 1398609223211.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "B037B014",
+    "lastKnownWriteTime" : 140577677027072,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "caption" : "iris",
+        "contentUrl" : "content?title=iris&file=f6d359d169d748f8b90e4275d00616c8.htm",
+        "displayedObservations" : "150",
+        "displayedVariables" : 5,
+        "totalObservations" : "150",
+        "variables" : "5"
+    },
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}
